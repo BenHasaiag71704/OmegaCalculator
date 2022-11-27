@@ -6,13 +6,16 @@ string = input("enter your Equation here : ")
 
 e = Equation(string)
 
+def swapAllTabs(l:list):
+    for i in range(len(l)):
+        if (l[i] == "\t"):
+            l[i]= " "
+    return l
 
-# will be space validation
-def SecondValidation(l: list):
-    return True
 
-t = SecondValidation(e.Equationlist)
-print(e.Equationlist)
-print(t)
+
+
+
+
 
 
