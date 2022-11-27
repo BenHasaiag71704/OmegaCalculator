@@ -7,6 +7,7 @@ class Equation(object):
         if (AbsoluteValid(Equationlist)):
             Equationlist = NoDoubleSpaces(Equationlist)
             print(Equationlist)
+            Equationlist = charsIntoNumbers(Equationlist)
             self.Equationlist = Equationlist
         else:
             print("there is an error in the input")
