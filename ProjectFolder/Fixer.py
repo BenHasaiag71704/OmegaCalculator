@@ -35,7 +35,7 @@ def charsIntoNumbers(l: list):
         if (OperatorList.count(l[i]) == 1):
             tempList.append(l[i])
         # if its a number
-        if l[i].isdigit():
+        if l[i].isdigit() or l[i] == ".":
         #as long as we see digits
             while (l[i].isdigit() and i < len(l) - 1):
                 # sums the number
