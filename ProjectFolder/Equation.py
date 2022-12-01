@@ -29,5 +29,4 @@ class Equation(object):
         if (flag and flag2):
             self.Equationlist = Equationlist
         else:
-            print("there is an error in the input")
             self.Equationlist = []

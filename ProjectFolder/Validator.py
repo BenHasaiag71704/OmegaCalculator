@@ -36,25 +36,32 @@ def noDigSpacDigValidation(l: list):
 
 #both of the above
 def AllowedAndNoDigSpaceValid(l: list):
+    if (onlyAllowdCharsValidation(l) == False):
+        print("a non valid char was inputed!")
+    if (noDigSpacDigValidation(l) == False):
+        print("you cant space between two numbers!")
     return onlyAllowdCharsValidation(l) and noDigSpacDigValidation(l)
 
 # no - *space* num
 def noMinusSpaceDig(l : list):
+    flag = True
     for i in range(len(l) - 1):
         if l[i] == ' ':
             if isNum(l[i - 1]) and isNum(l[i + 1]):
-                return False
+                flag = False
             elif l[i - 1] == '-' and isNum(l[i + 1]):
                 if i == 1:
-                    return False
+                    flag = False
                 else:
                     if l[i - 2] == ' ':
                         if l[i - 3] in regularOperator or \
                                 l[i - 3] in unregularOperator or \
                                 l[i - 3] == '(':
-                            return False
+                            flag = False
                     elif l[i - 2] in regularOperator or \
                             l[i - 2] in unregularOperator or \
                             l[i - 2] == '(':
-                        return False
-    return True
+                        flag = False
+    if (flag == False):
+        print("you canot put a space between minus and number without operator on the other side!")
+    return flag
