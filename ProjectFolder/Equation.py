@@ -8,16 +8,21 @@ from Fixer import *
 class Equation(object):
     def __init__(self, MyInput):
         Equationlist = list(MyInput)
-        print(Equationlist)
+        print("original list :" , Equationlist)
 
         flag = AllowedAndNoDigSpaceValid(Equationlist)
 
         Equationlist = noDoubleSpaces(Equationlist)
         Equationlist = convertTofloats(Equationlist)
         Equationlist = fixDecimalPoint(Equationlist)
+        print("list without doubleSpaces , with decimals" , Equationlist)
 
+        Equationlist = removeMultipuleMinus(Equationlist)
+        print("list without Multipule Minus" ,Equationlist)
 
-        print(Equationlist)
+        Equationlist = minusIntoTheNumber(Equationlist)
+        print("list with Minus inside the numbers" ,Equationlist)
+
         flag2 = noMinusSpaceDig(Equationlist)
 
         Equationlist = NoSpaces(Equationlist)

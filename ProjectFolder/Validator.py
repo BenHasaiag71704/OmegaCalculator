@@ -66,7 +66,7 @@ def noMinusSpaceDig(l : list):
         print("you canot put a space between minus and number without operator on the other side!")
     return flag
 
-
+# validation for close and open ( )
 def checkValidParenthesisOpenAndClose(l : list):
     count = 0
     for i in range(len(l)):
@@ -82,6 +82,8 @@ def checkValidParenthesisOpenAndClose(l : list):
     else:
         print("unvalid close and open Parenthesis")
 
+
+#validation for no ()
 def noEmptyParenthesis(l : list):
     for i in range(len(l) - 1):
         if (l[i] == '(' and l[i+1] == ')'):
@@ -89,5 +91,9 @@ def noEmptyParenthesis(l : list):
             return False
     return True
 
+
+#both of the ( ) validation together
 def ParenthesisValidation(l : list):
     return noEmptyParenthesis(l) and checkValidParenthesisOpenAndClose(l)
+
+

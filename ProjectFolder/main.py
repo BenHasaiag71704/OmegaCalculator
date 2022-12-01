@@ -6,8 +6,9 @@ from Consts import *
 
 
 
-
-string = input("enter your Equation here : ")
-
-e = Equation(string)
-
+try:
+    string = input("enter your Equation here : ")
+    e = Equation(string)
+    print(e.Equationlist)
+except KeyboardInterrupt:
+    print([])
