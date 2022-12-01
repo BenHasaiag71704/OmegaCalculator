@@ -35,7 +35,7 @@ def fixDecimalPoint(l: list):
     return l
 
 
-def convert_to_floats(equation: list) -> list:
+def convertTofloats(equation: list) -> list:
     new_equation = []
     index = 0
     length = len(equation)

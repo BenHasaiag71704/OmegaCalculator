@@ -1,10 +1,16 @@
 from Consts import *
 from Fixer import *
 
-def isAnumber(String : str):
-    pass
+#check if the string is a Number
+def isNum(num : str):
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
 
 
+#only valid chars
 def onlyAllowdCharsValidation(l: list):
     for i in l:
         if not i.isdecimal():
@@ -12,6 +18,7 @@ def onlyAllowdCharsValidation(l: list):
                 return False
     return True
 
+#no num *space* nun
 def noDigSpacDigValidation(l: list):
     tempBack = ''
     i = 0
@@ -31,4 +38,23 @@ def noDigSpacDigValidation(l: list):
 def AllowedAndNoDigSpaceValid(l: list):
     return onlyAllowdCharsValidation(l) and noDigSpacDigValidation(l)
 
-#no double spaces + all the numbers already turned into floats
+# no - *space* num
+def noMinusSpaceDig(l : list):
+    for i in range(len(l) - 1):
+        if l[i] == ' ':
+            if isNum(l[i - 1]) and isNum(l[i + 1]):
+                return False
+            elif l[i - 1] == '-' and isNum(l[i + 1]):
+                if i == 1:
+                    return False
+                else:
+                    if l[i - 2] == ' ':
+                        if l[i - 3] in regularOperator or \
+                                l[i - 3] in unregularOperator or \
+                                l[i - 3] == '(':
+                            return False
+                    elif l[i - 2] in regularOperator or \
+                            l[i - 2] in unregularOperator or \
+                            l[i - 2] == '(':
+                        return False
+    return True
