@@ -1,14 +1,18 @@
 from Consts import *
+from Fixer import *
 
-def FirstValidation(l: list):
-    OperatorList
+def isAnumber(String : str):
+    pass
+
+
+def onlyAllowdCharsValidation(l: list):
     for i in l:
         if not i.isdecimal():
             if not AllowedList.count(i) == 1:
                 return False
     return True
 
-def SecondValidation(l: list):
+def noDigSpacDigValidation(l: list):
     tempBack = ''
     i = 0
     while i < len(l):
@@ -16,13 +20,15 @@ def SecondValidation(l: list):
             tempBack = l[i - 1]
             while (l[i] == " " and i < len(l) - 1):
                 i = i + 1
-        if (tempBack.isdigit() and l[i].isdigit()):
+        if ((tempBack.isdigit() or isinstance(tempBack , float)) and (l[i].isdigit() or isinstance(l[i],float))):
             return False
         if (OperatorList.count(l[i]) == 1):
             tempBack = ''
         i = i + 1
     return True
 
-def AbsoluteValid(l: list):
-    return FirstValidation(l) and SecondValidation(l)
+#both of the above
+def AllowedAndNoDigSpaceValid(l: list):
+    return onlyAllowdCharsValidation(l) and noDigSpacDigValidation(l)
 
+#no double spaces + all the numbers already turned into floats
