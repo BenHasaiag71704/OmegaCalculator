@@ -23,10 +23,10 @@ class Equation(object):
         Equationlist = NoSpaces(Equationlist)
         print(Equationlist)
 
-        #check same ( ) number
+        flag3 = ParenthesisValidation(Equationlist)
         #flag2 = check operators
 
-        if (flag and flag2):
+        if (flag and flag2 and flag3):
             self.Equationlist = Equationlist
         else:
             self.Equationlist = []
