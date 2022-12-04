@@ -95,6 +95,6 @@ def minusIntoTheNumber(l : list):
     if (copy[0] == '-' and isNum(copy[1])):
         copy[1] = '-' + copy[1]
         del copy[0]
-    if (copy[0][0] == '-' and copy[0][1] == '-'):
-        copy[0] = copy[0][2]
+        if (copy[0][0] == '-' and copy[0][1] == '-'):
+            copy[0] = copy[0][2]
     return copy

@@ -152,10 +152,9 @@ def leftOperatorsValidatorFromLeft(l : list):
 #check that after rightOperator can come only regular operators
 def RightOperatorsValidatorFromRight(l : list):
     for i in range(len(l) - 1):
-        if (l[i] in rightOperators) and (not l[i+1] in regularOperator):
-            if (l[i+1] != ')'):
-                print("must have operator after rightOperator")
-                return False
+        if (l[i] in rightOperators) and (not l[i+1] in regularOperator) and (l[i+1] != ')') and (not l[i+1] in rightOperators):
+            print("must have operator after rightOperator")
+            return False
     return True
 
 
@@ -163,7 +162,7 @@ def RightOperatorsValidatorFromRight(l : list):
 
 def RightOperatorsValidatorFromLeft(l : list):
     for i in range(len(l)-1):
-        if (l[i+1] in rightOperators and (not isNum(l[i]) or l[i] == ')')):
+        if ((l[i+1] in rightOperators and (not isNum(l[i]) or l[i] == ')'))) and not (l[i] in rightOperators and l[i+1] in rightOperators):
             print("before rightOperator must come a number or )")
             return False
     return True
