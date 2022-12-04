@@ -29,9 +29,9 @@ class Equation(object):
         print(Equationlist)
 
         flag3 = ParenthesisValidation(Equationlist)
-        #flag2 = check operators
+        flag4 = allOperatorValidation(Equationlist)
 
-        if (flag and flag2 and flag3):
+        if (flag and flag2 and flag3 and flag4):
             self.Equationlist = Equationlist
         else:
             self.Equationlist = []

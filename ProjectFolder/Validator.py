@@ -34,13 +34,13 @@ def noDigSpacDigValidation(l: list):
         i = i + 1
     return True
 
-#both of the above
+#both of the above + .. validator
 def AllowedAndNoDigSpaceValid(l: list):
     if (onlyAllowdCharsValidation(l) == False):
         print("a non valid char was inputed!")
     if (noDigSpacDigValidation(l) == False):
         print("you cant space between two numbers!")
-    return onlyAllowdCharsValidation(l) and noDigSpacDigValidation(l)
+    return onlyAllowdCharsValidation(l) and noDigSpacDigValidation(l)  and noDoubleDot(l)
 
 # no - *space* num
 def noMinusSpaceDig(l : list):
@@ -91,9 +91,83 @@ def noEmptyParenthesis(l : list):
             return False
     return True
 
+def noDoubleDot(l : list):
+    for i in range(len(l) - 1):
+        if (l[i] == '.' and l[i+1] == '.'):
+            print("you cant have two dots next to each other")
+            return False
+    return True
 
 #both of the ( ) validation together
 def ParenthesisValidation(l : list):
     return noEmptyParenthesis(l) and checkValidParenthesisOpenAndClose(l)
 
+
+#check there is no double regular operator (except minus , he is a spaciel case)
+def regularOperatorValidator(l : list):
+    for i in range(len(l) - 1):
+        if (l[i] in regularOperatorNoMinus and l[i+1] in regularOperatorNoMinus):
+            print("you cant have two regular operators next to each other")
+            return False
+    return True
+
+#check the is no minus Unsined to number (minus of subtraction) before operator
+def noMinusBeforeRegularOperator(l : list):
+    for i in range(len(l) - 1):
+        if (l[i] == '-' and l[i+1] in regularOperatorNoMinus):
+            print("you cant have minus before another regular operator")
+            return False
+    return True
+
+#check that after leftOperators can come only num , - or (     also check there is something after it
+def leftOperatorsValidatorFromRight(l : list):
+    for i in range(len(l) - 1):
+        if (l[i] in leftOperators):
+            if (l[i+1] == '-'):
+                if (i+2 >= len(l)):
+                    print("if after tilda comes a - , the next input must be a number")
+                    return False
+                elif not isNum(l[i + 2]):
+                    print("if after tilda comes a - , the next input must be a number")
+                    return False
+            if (l[i+1] in regularOperatorNoMinus):
+                print("after tilda must come a number or (")
+                return False
+    if (l[(len(l) -1)]) in leftOperators:
+        print("tilda canot end the equation")
+        return False
+    return True
+
+
+#check that before leftOperators can come only regular operators
+def leftOperatorsValidatorFromLeft(l : list):
+    for i in range(len(l) - 1):
+        if (not l[i] in regularOperator) and l[i+1] in leftOperators:
+            if (l[i] != '('):
+                print("must have operator before tilda unless its the starting element")
+                return False
+    return True
+
+
+#check that after rightOperator can come only regular operators
+def RightOperatorsValidatorFromRight(l : list):
+    for i in range(len(l) - 1):
+        if (l[i] in rightOperators) and (not l[i+1] in regularOperator):
+            if (l[i+1] != ')'):
+                print("must have operator after rightOperator")
+                return False
+    return True
+
+
+#check that before rightOperator can come only number or )
+
+def RightOperatorsValidatorFromLeft(l : list):
+    for i in range(len(l)-1):
+        if (l[i+1] in rightOperators and (not isNum(l[i]) or l[i] == ')')):
+            print("before rightOperator must come a number or )")
+            return False
+    return True
+
+def allOperatorValidation(l : list):
+    return regularOperatorValidator(l) and noMinusBeforeRegularOperator(l) and leftOperatorsValidatorFromRight(l) and leftOperatorsValidatorFromLeft(l) and RightOperatorsValidatorFromRight(l) and RightOperatorsValidatorFromLeft(l)
 

@@ -86,11 +86,15 @@ def minusIntoTheNumber(l : list):
     while i<t:
         if i > t-3:
             break
-        elif (copy[i] in OperatorList and copy[i+1] == "-" and isNum(copy[i+2])):
+        elif (copy[i] in norightOperators and copy[i+1] == "-" and isNum(copy[i+2])):
             copy[i + 2] = "-" + copy[i+2]
             del copy[i+1]
             t = len(copy)
-
         else:
             i+=1
+    if (copy[0] == '-' and isNum(copy[1])):
+        copy[1] = '-' + copy[1]
+        del copy[0]
+    if (copy[0][0] == '-' and copy[0][1] == '-'):
+        copy[0] = copy[0][2]
     return copy
