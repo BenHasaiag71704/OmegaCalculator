@@ -32,6 +32,9 @@ class Equation(object):
         flag4 = allOperatorValidation(Equationlist)
 
         if (flag and flag2 and flag3 and flag4):
+            Equationlist = strToFloat(Equationlist)
             self.Equationlist = Equationlist
+            self.answer = 0
         else:
             self.Equationlist = []
+            self.answer = 0

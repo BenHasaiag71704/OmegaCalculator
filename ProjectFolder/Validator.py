@@ -109,6 +109,9 @@ def regularOperatorValidator(l : list):
         if (l[i] in regularOperatorNoMinus and l[i+1] in regularOperatorNoMinus):
             print("you cant have two regular operators next to each other")
             return False
+    if l[len(l) - 1] in regularOperator:
+        print("you cant end with regular operator!")
+        return False
     return True
 
 #check the is no minus Unsined to number (minus of subtraction) before operator
@@ -162,9 +165,12 @@ def RightOperatorsValidatorFromRight(l : list):
 
 def RightOperatorsValidatorFromLeft(l : list):
     for i in range(len(l)-1):
-        if ((l[i+1] in rightOperators and (not isNum(l[i]) or l[i] == ')'))) and not (l[i] in rightOperators and l[i+1] in rightOperators):
-            print("before rightOperator must come a number or )")
+        if ((l[i+1] in rightOperators and not (isNum(l[i]) or l[i] == ')' or l[i] in rightOperators))):
+            print("before rightOperator must come a number or something that will preduce a number")
             return False
+    if (l[0] in rightOperators):
+        print("before rightOperator must come a number")
+        return False
     return True
 
 def allOperatorValidation(l : list):

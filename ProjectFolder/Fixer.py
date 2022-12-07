@@ -98,3 +98,14 @@ def minusIntoTheNumber(l : list):
         if (copy[0][0] == '-' and copy[0][1] == '-'):
             copy[0] = copy[0][2]
     return copy
+
+
+def strToFloat(l : list):
+    temp = []
+    for i in range(len(l)):
+        if (isNum(l[i])):
+            temp.append(float(l[i]))
+        else:
+            temp.append(l[i])
+    return temp
+
