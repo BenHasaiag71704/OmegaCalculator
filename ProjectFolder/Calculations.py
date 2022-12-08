@@ -1,3 +1,5 @@
+import math
+from Fixer import *
 from Consts import *
 
 def getOperatorList(f : int):
@@ -11,9 +13,6 @@ def removeDecimal(f: float) -> int:
     s = str(f)
     s = s.replace('.', '')
     return int(s)
-
-
-
 
 def factorial(f : float):
     if (f == 0):
@@ -50,14 +49,14 @@ def getMin(f1 : float , f2 : float):
     return f1
 
 
-
-
 def calculation(l : list):
     l = calculate6(l)
-
-
-    return l
-
+    l = calculate5(l)
+    l = calculate4(l)
+    l = calculate3(l)
+    l = calculate2(l)
+    l = calculate1(l)
+    return l[0]
 
 def calculate6(l : list):
     i = 0
@@ -82,7 +81,6 @@ def calculate6(l : list):
             i = i + 1
         t = len(l)
     return l
-
 
 def calculate5(l : list):
     operators = getOperatorList(5)
@@ -114,13 +112,111 @@ def calculate5(l : list):
         t = len(l) - 1
     return l
 
-temp = [5 , '$' , 7 , '$' , 9]
-#temp = [3 , '!' , '!']
-temp = calculate5(temp)
-print(temp)
+def calculate4(l : list):
+    operators = getOperatorList(4)
+    i = 1
+    t = len(l) - 1
+    while i < t:
+        if (l[i] in operators and l[i] in regularOperator):
+            while True:
+                if (l[i] == '%'):
+                    l[i] = l[i-1] % l[i+1]
+                    del l[i-1]
+                    #not i+1 bcz we just deleted number!
+                    del l[i]
+                    break
+        else:
+            i = i + 1
+        t = len(l) - 1
+    return l
+
+def calculate3(l : list):
+    operators = getOperatorList(3)
+    i = 1
+    t = len(l) - 1
+    while i < t:
+        if (l[i] in operators and l[i] in regularOperator):
+            while True:
+                if (l[i] == '^'):
+                    l[i] =  math.pow(l[i-1] , l[i+1])
+                    del l[i-1]
+                    #not i+1 bcz we just deleted number!
+                    del l[i]
+                    break
+        else:
+            i = i + 1
+        t = len(l) - 1
+    return l
+
+def calculate2(l : list):
+    operators = getOperatorList(2)
+    i = 1
+    t = len(l) - 1
+    while i < t:
+        if (l[i] in operators and l[i] in regularOperator):
+            while True:
+                if (l[i] == '/'):
+                    l[i] =  l[i-1] / l[i+1]
+                    del l[i-1]
+                    #not i+1 bcz we just deleted number!
+                    del l[i]
+                    break
+                if (l[i] == '*'):
+                    l[i] =  l[i-1] * l[i+1]
+                    del l[i-1]
+                    #not i+1 bcz we just deleted number!
+                    del l[i]
+                    break
+        else:
+            i = i + 1
+        t = len(l) - 1
+    return l
+
+def calculate1(l : list):
+    operators = getOperatorList(1)
+    i = 1
+    t = len(l) - 1
+    while i < t:
+        if (l[i] in operators and l[i] in regularOperator):
+            while True:
+                if (l[i] == '+'):
+                    l[i] =  l[i-1] + l[i+1]
+                    del l[i-1]
+                    #not i+1 bcz we just deleted number!
+                    del l[i]
+                    break
+                if (l[i] == '-'):
+                    l[i] =  l[i-1] - l[i+1]
+                    del l[i-1]
+                    #not i+1 bcz we just deleted number!
+                    del l[i]
+                    break
+        else:
+            i = i + 1
+        t = len(l) - 1
+    return l
 
 
-print(getOperatorList(5))
-
-i = 6
+def calculateWithparenthesis(l : list):
+    tempList = []
+    i = 0
+    t = len(l)
+    while i < t:
+        if l[i] == ')':
+            del l[i]
+            i = i - 1
+            while (not l[i] == '('):
+                tempList.append(l[i])
+                del l[i]
+                i = i - 1
+            tempList.reverse()
+            tempList = strToFloat(tempList)
+            l[i] = calculation(tempList)
+            tempList = []
+        else:
+            i = i + 1
+        t = len(l)
+    l = strToFloat(l)
+    l = calculation(l)
+    return l
 

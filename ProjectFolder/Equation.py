@@ -1,6 +1,6 @@
 from Validator import *
 from Fixer import *
-
+from Calculations import *
 # delete all space doubles
 # check all chars are allowed + check dig space dig
 
@@ -15,18 +15,18 @@ class Equation(object):
         Equationlist = noDoubleSpaces(Equationlist)
         Equationlist = convertTofloats(Equationlist)
         Equationlist = fixDecimalPoint(Equationlist)
-        print("list without doubleSpaces , with decimals" , Equationlist)
+        #print("list without doubleSpaces , with decimals" , Equationlist)
 
         Equationlist = removeMultipuleMinus(Equationlist)
-        print("list without Multipule Minus" ,Equationlist)
+        #print("list without Multipule Minus" ,Equationlist)
 
         Equationlist = minusIntoTheNumber(Equationlist)
-        print("list with Minus inside the numbers" ,Equationlist)
+        #print("list with Minus inside the numbers" ,Equationlist)
 
         flag2 = noMinusSpaceDig(Equationlist)
 
         Equationlist = NoSpaces(Equationlist)
-        print(Equationlist)
+        #print(Equationlist)
 
         flag3 = ParenthesisValidation(Equationlist)
         flag4 = allOperatorValidation(Equationlist)
@@ -34,7 +34,7 @@ class Equation(object):
         if (flag and flag2 and flag3 and flag4):
             Equationlist = strToFloat(Equationlist)
             self.Equationlist = Equationlist
-            self.answer = 0
+            self.answer = calculateWithparenthesis(Equationlist)
         else:
             self.Equationlist = []
             self.answer = 0

@@ -99,7 +99,6 @@ def minusIntoTheNumber(l : list):
             copy[0] = copy[0][2]
     return copy
 
-
 def strToFloat(l : list):
     temp = []
     for i in range(len(l)):
@@ -108,4 +107,6 @@ def strToFloat(l : list):
         else:
             temp.append(l[i])
     return temp
+
+
 
