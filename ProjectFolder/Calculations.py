@@ -18,7 +18,7 @@ def factorial(f : float):
     if (f == 0):
         return 0
     if (f < 0):
-        print("cant factorial float")
+        print("cant factorial negetive number")
         return -1
     sum = 1
     if (float(f).is_integer()):
@@ -184,6 +184,10 @@ def calculate1(l : list):
                     del l[i-1]
                     #not i+1 bcz we just deleted number!
                     del l[i]
+                    break
+                if (l[i] == '-' and l[i+1] == '-'):
+                    l[i] =  '+'
+                    del l[i+1]
                     break
                 if (l[i] == '-'):
                     l[i] =  l[i-1] - l[i+1]
