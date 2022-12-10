@@ -4,10 +4,10 @@ from Fixer import *
 from Consts import *
 
 
-
 try:
     string = input("enter your Equation here : ")
-    e = Equation(string)
-    print(e.answer)
 except KeyboardInterrupt:
     print([])
+finally:
+    e = Equation(string)
+    print(e.answer)

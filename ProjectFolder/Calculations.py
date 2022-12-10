@@ -1,6 +1,10 @@
 import math
 from Fixer import *
 from Consts import *
+from allExceptions import *
+
+
+
 
 def getOperatorList(f : int):
     temp = []
@@ -18,16 +22,14 @@ def factorial(f : float):
     if (f == 0):
         return 0
     if (f < 0):
-        print("cant factorial negetive number")
-        return -1
+        raise NegetiveFactorialException
     sum = 1
     if (float(f).is_integer()):
         while (f > 1):
             sum = sum * f
             f = f - 1
     else:
-        print("cant factorial float")
-        return -1
+        raise floatFactorial
     return sum
 
 def sumOfDig(f : float):

@@ -1,6 +1,10 @@
 from Validator import *
 from Fixer import *
 from Calculations import *
+from allExceptions import *
+
+
+
 # delete all space doubles
 # check all chars are allowed + check dig space dig
 
@@ -34,7 +38,14 @@ class Equation(object):
         if (flag and flag2 and flag3 and flag4):
             Equationlist = strToFloat(Equationlist)
             self.Equationlist = Equationlist
-            self.answer = calculateWithparenthesis(Equationlist)
+            try:
+                self.answer = calculateWithparenthesis(Equationlist)
+            except NegetiveFactorialException:
+                print("you cant factorial negetive number")
+                self.answer = 0
+            except floatFactorial:
+                print("you cant factorial float number")
+                self.answer = 0
         else:
             self.Equationlist = []
             self.answer = None
