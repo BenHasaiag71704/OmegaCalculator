@@ -105,6 +105,7 @@ def minusIntoTheNumber(l : list):
                 if (i != len(l)):
                     l[i] =  "-" + l[i]
                 t = len(l)
+            i = i + 1
         else:
             i = i + 1
     return l
