@@ -21,6 +21,9 @@ class Equation(object):
         Equationlist = fixDecimalPoint(Equationlist)
         print("list without doubleSpaces , with decimals" , Equationlist)
 
+        flag5 = noNegetivrFactorialAtTheBegine(Equationlist)
+
+
         Equationlist = removeMultipuleMinus(Equationlist)
         print("list without Multipule Minus" ,Equationlist)
 
@@ -35,7 +38,11 @@ class Equation(object):
         flag3 = ParenthesisValidation(Equationlist)
         flag4 = allOperatorValidation(Equationlist)
 
-        if (flag and flag2 and flag3 and flag4):
+        #flag5 = noNegetivehastagclal(Equationlist)
+        #and flag5
+
+        flag6 = doesntStartWithRegular(Equationlist)
+        if (flag and flag2 and flag3 and flag4 and flag5 and flag6):
             Equationlist = strToFloat(Equationlist)
             self.Equationlist = Equationlist
             try:

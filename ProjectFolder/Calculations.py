@@ -4,7 +4,11 @@ from Consts import *
 from allExceptions import *
 
 
-
+def copyLList(l : list):
+    temp = []
+    for i in range(len(l)):
+        temp.append(l[i])
+    return temp
 
 def getOperatorList(f : int):
     temp = []
@@ -35,6 +39,8 @@ def factorial(f : float):
 def sumOfDig(f : float):
     temp = removeDecimal(f)
     sum = 0
+    if (temp < 0):
+        temp = - temp
     while (temp > 0):
         sum = sum + temp % 10
         temp = int(temp/10)
@@ -202,7 +208,6 @@ def calculate1(l : list):
         t = len(l) - 1
     return l
 
-
 def calculateWithparenthesis(l : list):
     tempList = []
     i = 0
@@ -225,4 +230,6 @@ def calculateWithparenthesis(l : list):
     l = strToFloat(l)
     l = calculation(l)
     return l
+
+
 

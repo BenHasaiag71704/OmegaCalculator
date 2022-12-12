@@ -1,5 +1,6 @@
 from Consts import *
 from Fixer import *
+from Calculations import *
 
 #check if the string is a Number
 def isNum(num : str):
@@ -176,3 +177,35 @@ def RightOperatorsValidatorFromLeft(l : list):
 def allOperatorValidation(l : list):
     return regularOperatorValidator(l) and noMinusBeforeRegularOperator(l) and leftOperatorsValidatorFromRight(l) and leftOperatorsValidatorFromLeft(l) and RightOperatorsValidatorFromRight(l) and RightOperatorsValidatorFromLeft(l)
 
+def noNegetivehastagclal(l : list):
+    ans = 0
+    copyList = copyLList(l)
+    tempList = []
+    count = 1
+    i = 1
+    t = len(copyList)
+    while i < t:
+        pass
+
+
+def noNegetivrFactorialAtTheBegine(l:list):
+    temp = NoSpaces(l)
+    i = 0
+    flag = False
+    while (temp[i] == '-' and i < len(temp)):
+        i=i+1
+        flag = True
+    if (flag):
+        if (i+1 < len(temp)):
+            if (isNum(temp[i]) and temp[i+1] == '!' ):
+                print("cant factorial a number")
+                return False
+    return True
+
+def doesntStartWithRegular(l:list):
+    i = 0
+    while (l[i] == '('):
+        i=i+1
+    if (l[i] in regularOperatorNoMinus):
+        return False
+    return True
