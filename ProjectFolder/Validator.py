@@ -39,9 +39,13 @@ def noDigSpacDigValidation(l: list):
 def AllowedAndNoDigSpaceValid(l: list):
     if (onlyAllowdCharsValidation(l) == False):
         print("a non valid char was inputed!")
-    if (noDigSpacDigValidation(l) == False):
-        print("you cant space between two numbers!")
-    return onlyAllowdCharsValidation(l) and noDigSpacDigValidation(l)  and noDoubleDot(l)
+
+    #if needed can get the 3_3 valid back
+
+    #if (noDigSpacDigValidation(l) == False):
+    # print("you cant space between two numbers!")
+    return onlyAllowdCharsValidation(l) and noDoubleDot(l)
+    #and noDigSpacDigValidation(l)
 
 # no - *space* num
 def noMinusSpaceDig(l : list):

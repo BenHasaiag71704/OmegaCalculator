@@ -4,3 +4,6 @@ class NegetiveFactorialException(Exception):
 
 class floatFactorial(Exception):
     pass
+
+class noComplexFromPower(Exception):
+    pass

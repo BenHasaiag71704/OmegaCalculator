@@ -15,6 +15,7 @@ class Equation(object):
         print("original list :" , Equationlist)
 
         flag = AllowedAndNoDigSpaceValid(Equationlist)
+        Equationlist = NoSpaces(Equationlist)
 
         Equationlist = noDoubleSpaces(Equationlist)
         Equationlist = convertTofloats(Equationlist)
@@ -35,9 +36,12 @@ class Equation(object):
 
         print("list with Minus inside the numbers" ,Equationlist)
 
-        flag2 = noMinusSpaceDig(Equationlist)
+        #can be added if needed -_3 valid
+        #flag2 = noMinusSpaceDig(Equationlist)
 
-        Equationlist = NoSpaces(Equationlist)
+
+        #would be here when -_3 valid
+        #Equationlist = NoSpaces(Equationlist)
         print(Equationlist)
 
         flag3 = ParenthesisValidation(Equationlist)
@@ -47,7 +51,9 @@ class Equation(object):
         #and flag5
 
         flag6 = doesntStartWithRegular(Equationlist)
-        if (flag and flag2 and flag3 and flag4 and flag6):
+
+        #and flag2 for -_2 valid
+        if (flag  and flag3 and flag4 and flag6):
             Equationlist = strToFloat(Equationlist)
             self.Equationlist = Equationlist
             try:
@@ -58,6 +64,10 @@ class Equation(object):
             except floatFactorial:
                 print("you cant factorial float number")
                 self.answer = 0
+            except noComplexFromPower:
+                print("you cant power negetive^fraction")
+                self.answer = 0
+
         else:
             self.Equationlist = []
             self.answer = None

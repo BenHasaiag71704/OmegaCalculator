@@ -146,7 +146,10 @@ def calculate3(l : list):
         if (l[i] in operators and l[i] in regularOperator):
             while True:
                 if (l[i] == '^'):
-                    l[i] =  math.pow(l[i-1] , l[i+1])
+                    try :
+                        l[i] =  math.pow(l[i-1] , l[i+1])
+                    except ValueError:
+                        raise noComplexFromPower
                     del l[i-1]
                     #not i+1 bcz we just deleted number!
                     del l[i]
