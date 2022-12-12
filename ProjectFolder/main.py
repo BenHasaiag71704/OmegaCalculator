@@ -7,12 +7,19 @@ from Consts import *
 
 
 
+string = None
 
+while string == None:
+    try:
+        string = input("enter your Equation here : ")
+    except KeyboardInterrupt:
+        print([])
+    except UnicodeDecodeError:
+        print([])
+    except EOFError:
+        print([])
+        string = 'd'
+        break
 
-try:
-    string = input("enter your Equation here : ")
-except KeyboardInterrupt:
-    print([])
-finally:
-    e = Equation(string)
-    print(e.answer)
+e = Equation(string)
+print(e.answer)

@@ -21,13 +21,18 @@ class Equation(object):
         Equationlist = fixDecimalPoint(Equationlist)
         print("list without doubleSpaces , with decimals" , Equationlist)
 
-        flag5 = noNegetivrFactorialAtTheBegine(Equationlist)
-
+        #flag5 = noNegetivrFactorialAtTheBegine(Equationlist)
+        #and flag5
 
         Equationlist = removeMultipuleMinus(Equationlist)
         print("list without Multipule Minus" ,Equationlist)
 
+
         Equationlist = minusIntoTheNumber(Equationlist)
+
+
+        Equationlist = firstMinusesIntoNumber(Equationlist)
+
         print("list with Minus inside the numbers" ,Equationlist)
 
         flag2 = noMinusSpaceDig(Equationlist)
@@ -42,7 +47,7 @@ class Equation(object):
         #and flag5
 
         flag6 = doesntStartWithRegular(Equationlist)
-        if (flag and flag2 and flag3 and flag4 and flag5 and flag6):
+        if (flag and flag2 and flag3 and flag4 and flag6):
             Equationlist = strToFloat(Equationlist)
             self.Equationlist = Equationlist
             try:

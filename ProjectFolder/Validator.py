@@ -207,5 +207,7 @@ def doesntStartWithRegular(l:list):
     while (l[i] == '('):
         i=i+1
     if (l[i] in regularOperatorNoMinus):
+        print("you need to start an equation with number or leftBinaryOperator")
         return False
+
     return True

@@ -79,7 +79,62 @@ def removeMultipuleMinus(l : list):
     return copy
 
 #insert the minus into the number when needed
+
+#if there is a numebr , -- into + , else , -- into nothing
 def minusIntoTheNumber(l : list):
+    i = 1
+    t = len(l)
+    while i < t - 1:
+        if (l[i] == '-' and l[i+1] == '-'):
+            while (True):
+                if (l[i-1] in norightOperators):
+                    del l[i]
+                    del l[i]
+                    t = len(l)
+                    break
+                if (isNum(l[i-1])):
+                    del l[i]
+                    l[i] = "+"
+                    t = len(l)
+                    break
+        elif (l[i] == '-' and l[i+1] != '-'):
+            if (l[i-1] in norightOperators):
+                del l[i]
+                while i < len(l) and not isNum(l[i]):
+                    i = i + 1
+                if (i != len(l)):
+                    l[i] =  "-" + l[i]
+                t = len(l)
+        else:
+            i = i + 1
+    return l
+
+def firstMinusesIntoNumber(l:list):
+    i = 0
+    count = 0
+    while l[i] == '(':
+        i = i + 1
+    if (l[i] == '-' and l[i+1] == '-'):
+        del l[i]
+        del l[i]
+    if (l[i] == '-' and l[i+1] != '-'):
+        del l[i]
+        while not isNum(l[i]):
+            i = i + 1
+        l[i] = "-" + l[i]
+    return l
+
+def strToFloat(l : list):
+    temp = []
+    for i in range(len(l)):
+        if (isNum(l[i])):
+            temp.append(float(l[i]))
+        else:
+            temp.append(l[i])
+    return temp
+
+
+def minusIntoTheNumberOLD(l : list):
     copy =  NoSpaces(l)
     t = len(copy)
     i = 0
@@ -98,15 +153,4 @@ def minusIntoTheNumber(l : list):
         if (copy[0][0] == '-' and copy[0][1] == '-'):
             copy[0] = copy[0][2]
     return copy
-
-def strToFloat(l : list):
-    temp = []
-    for i in range(len(l)):
-        if (isNum(l[i])):
-            temp.append(float(l[i]))
-        else:
-            temp.append(l[i])
-    return temp
-
-
 
