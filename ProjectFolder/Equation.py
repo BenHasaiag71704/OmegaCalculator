@@ -67,6 +67,9 @@ class Equation(object):
             except noComplexFromPower:
                 print("you cant power negetive^fraction")
                 self.answer = 0
+            except numberToBig:
+                print("the maximing number python can sum is up to 1*10^16")
+                self.answer = 0
 
         else:
             self.Equationlist = []

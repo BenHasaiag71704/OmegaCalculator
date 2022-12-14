@@ -20,6 +20,10 @@ def getOperatorList(f : int):
 def removeDecimal(f: float) -> int:
     s = str(f)
     s = s.replace('.', '')
+    try :
+        int(s)
+    except:
+        raise numberToBig
     return int(s)
 
 def factorial(f : float):

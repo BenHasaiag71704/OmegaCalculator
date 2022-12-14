@@ -123,6 +123,9 @@ def firstMinusesIntoNumber(l:list):
         while not isNum(l[i]):
             i = i + 1
         l[i] = "-" + l[i]
+    if (len(l[0]) == 3):
+        temp = l[0][2]
+        l[0] = temp
     return l
 
 def strToFloat(l : list):

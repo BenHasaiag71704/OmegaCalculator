@@ -7,3 +7,6 @@ class floatFactorial(Exception):
 
 class noComplexFromPower(Exception):
     pass
+
+class numberToBig(Exception):
+    pass
