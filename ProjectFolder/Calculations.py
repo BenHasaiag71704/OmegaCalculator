@@ -209,6 +209,10 @@ def calculate1(l : list):
     operators = getOperatorList(1)
     i = 1
     t = len(l) - 1
+    if (len(l) >=2):
+        if l[0] == '-':
+            del l[0]
+            l[0] = -l[0]
     while i < t:
         if (l[i] in operators and l[i] in regularOperator):
             while True:

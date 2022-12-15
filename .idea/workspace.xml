@@ -39,7 +39,7 @@
       <recent name="C:\Users\BenHa\Documents\GitHub\OmegaCalculator\ProjectFolder" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for tester.test_my_test">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="OmegaCalculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,8 +126,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ProjectFolder/Calculations.py</url>
-          <line>75</line>
-          <option name="timeStamp" value="32" />
+          <line>208</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
