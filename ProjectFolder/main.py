@@ -1,25 +1,101 @@
+import math
 from Validator import *
 from Equation import *
 from Fixer import *
 from Consts import *
 
+print("welcome to my omega calculator , please insert your answers")
+flag = True
+while flag:
+    string = None
+    while string == None:
+        try:
+            string = input("enter your Equation here : ")
+            print("\n")
+        except KeyboardInterrupt:
+            print([])
+        except UnicodeDecodeError:
+            print([])
+        except EOFError:
+            print([])
+            string = 'd'
+            flag = False
+            break
+    e = Equation(string)
+    print("\n")
+    print(f"the result is : {e.answer} ")
+    print("\n")
 
 
 
 
-string = None
+#3^*2
+#3~*2
+#!3
+#!!!
+#3&*3
+#3+(5-1))
+#great success
 
-while string == None:
-    try:
-        string = input("enter your Equation here : ")
-    except KeyboardInterrupt:
-        print([])
-    except UnicodeDecodeError:
-        print([])
-    except EOFError:
-        print([])
-        string = 'd'
-        break
+#
 
-e = Equation(string)
-print(e.answer)
+#--3
+#5^2
+#(1+2+3+5+6)#
+#3^3!
+#3!!
+#3*4$13
+#(3*4)$13
+#3@5@9@12@15
+#~3!
+#~~3!
+#~-3!
+#2.5^2.5
+#1+2*3^4.1#
+#(5&3)@(8$3)
+#(5/2)/2/2
+#--10%13 + 5%2 + -7%5
+
+
+
+
+
+#((   (5.2)^2@4)# + ~   1.5+3!/0.2   )#^0.5   *5%   3
+
+#(3^(3$     5 - 7*6 + 5.3    912# + 4! -4) +   (~   5   *(--2))%9 + 1)^0.5
+
+#(   (-5    @(-7+(  4$(5   &4 + 5   %3)^   4)))#-    7)   ! % 3.5*5
+
+#((5!^5%3)#)^((5!^5%3)# @ 1 + ~8/4) * (1/27)
+
+#((  (3-  -2+~5)!/0. 0 4 * (5 & 10*3$4  + 1/8)# % 7)#/2)@10
+
+# (5!@4%32^2/90*1.5-5+10)*3 + (5-( 2 ^ 32 % 4 @ 5!)#)
+
+# (((((((--4)^(--2))#!#^2)*0.3)#/4.5)^6)%8)@100 * 10 / 5 + 2
+
+# ((150%52   %3)@49^0.5) $ (  1/(  1+(1/(   1+(  1/(1+  (1/(1+1) )) ) ) ) ) )# * 3 / 2.5
+
+#  (3/  2 ) +( 6  *2)-5! + 3^5 -   2  ^6 * 3  .5 - (16  ^0.5)^  0.5 - 9 %2 ^10
+
+# (((3$4$5$6$7 + 3@4@5@6@7 + 3&4&5&6&7 - 1/16)^0.5 + 1.678)#%23)!--5*2
+
+# ((( ( ( - -2) ^(- -2 ))*( (3 --3+- -3) ^( 0.5))) !#^ (1/ 3)  )! !) %(4  7)^2
+
+# 1/((--5*--3^--2+--4!%--13--4*--2---3----7)#) + 4@5$6 + 4@(5$6)
+
+# 6 -(1/((1+5^0.5)/2) + 1/(((1+5^0.5)/2)^2) + (20+((20+(20+(20^0.5))^0.5)^0.5))^0.5) - 0.0005309903763039969
+
+# 86028# + 125*31 - 4^((3.7^2)# - 15) - 5^(-~--3) - 6! - 1582@924
+
+
+
+
+#~-(-5)
+#--3
+#-~-5
+
+
+
+
+

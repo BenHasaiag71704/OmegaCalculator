@@ -87,25 +87,36 @@ def minusIntoTheNumber(l : list):
     while i < t - 1:
         if (l[i] == '-' and l[i+1] == '-'):
             while (True):
-                if (l[i-1] in norightOperators):
+                if (l[i-1] in norightOperators and l[i-1] != ')'):
                     del l[i]
                     del l[i]
                     t = len(l)
+                    i = i + 1
                     break
-                if (isNum(l[i-1])):
+                if (isNum(l[i-1]) or l[i-1] == '!' or l[i-1] == ')'):
                     del l[i]
                     l[i] = "+"
                     t = len(l)
                     break
-        elif (l[i] == '-' and l[i+1] != '-'):
-            if (l[i-1] in norightOperators):
+        elif (l[i] == '-' and isNum(l[i+1])) and (l[i-1] in norightOperators and l[i-1] != ')'):
+            if float(l[i+1]) > 0:
                 del l[i]
-                while i < len(l) and not isNum(l[i]):
-                    i = i + 1
-                if (i != len(l)):
-                    l[i] =  "-" + l[i]
+                l[i] = "-" + l[i]
                 t = len(l)
-            i = i + 1
+            else:
+                del l[i]
+                l[i] = l[i][1:]
+                t = len(l)
+        # elif (l[i] == '-' and l[i+1] != '-'):
+        #     if (l[i-1] in norightOperators and l[i-1] != ')'):
+        #         del l[i]
+        #         while i < len(l) and not isNum(l[i]):
+        #             i = i + 1
+        #         if (i != len(l)):
+        #             l[i] = "-" + l[i]
+        #             i = 0
+        #         t = len(l)
+        #     i = i + 1
         else:
             i = i + 1
     return l
@@ -123,10 +134,19 @@ def firstMinusesIntoNumber(l:list):
         while not isNum(l[i]):
             i = i + 1
         l[i] = "-" + l[i]
-    if (len(l[0]) == 3):
-        temp = l[0][2]
-        l[0] = temp
+
+    if (not isNum(l[0])):
+        if (l[0] != "~"):
+            if (len(l[0]) >= 3):
+                temp = l[0][2:]
+                l[0] = temp
+        else:
+            if (len(l[1]) >= 3):
+                temp = l[1][2:]
+                l[1] = temp
     return l
+
+
 
 def strToFloat(l : list):
     temp = []

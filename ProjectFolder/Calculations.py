@@ -20,19 +20,21 @@ def getOperatorList(f : int):
 def removeDecimal(f: float) -> int:
     s = str(f)
     s = s.replace('.', '')
-    try :
+    try:
         int(s)
     except:
-        raise numberToBig
+        raise numberToBigToSum
     return int(s)
 
 def factorial(f : float):
     if (f == 0):
-        return 0
+        return 1
     if (f < 0):
         raise NegetiveFactorialException
     sum = 1
     if (float(f).is_integer()):
+        if (f > 170):
+            raise numberToBig
         while (f > 1):
             sum = sum * f
             f = f - 1
@@ -43,11 +45,15 @@ def factorial(f : float):
 def sumOfDig(f : float):
     temp = removeDecimal(f)
     sum = 0
+    flag = False
     if (temp < 0):
+        flag = True
         temp = - temp
     while (temp > 0):
         sum = sum + temp % 10
         temp = int(temp/10)
+    if (flag):
+        return -sum
     return sum
 
 def getMax(f1 : float , f2 : float):
@@ -82,13 +88,17 @@ def calculate6(l : list):
                     del l[i]
                     break
                 elif l[i] == '#':
-                    l[i - 1] = sumOfDig(l[i - 1])
+                    l[i - 1] = sumOfDig( l[i - 1])
                     del l[i]
                     break
         elif l[i] in leftOperators and l[i] in operators:
             if l[i] == '~':
-                l[i + 1] =  -(l[i + 1])
-                del l[i]
+                if l[i+1] != '-':
+                    l[i + 1] =  -(l[i + 1])
+                    del l[i]
+                else:
+                    del l[i]
+                    del l[i]
         else:
             i = i + 1
         t = len(l)
@@ -131,12 +141,15 @@ def calculate4(l : list):
     while i < t:
         if (l[i] in operators and l[i] in regularOperator):
             while True:
-                if (l[i] == '%'):
-                    l[i] = l[i-1] % l[i+1]
-                    del l[i-1]
+                try :
+                    if (l[i] == '%'):
+                        l[i] = l[i-1] % l[i+1]
+                        del l[i-1]
                     #not i+1 bcz we just deleted number!
-                    del l[i]
-                    break
+                        del l[i]
+                        break
+                except ZeroDivisionError:
+                    raise zeroModulo
         else:
             i = i + 1
         t = len(l) - 1
@@ -154,6 +167,8 @@ def calculate3(l : list):
                         l[i] =  math.pow(l[i-1] , l[i+1])
                     except ValueError:
                         raise noComplexFromPower
+                    except OverflowError:
+                        raise numberToBig
                     del l[i-1]
                     #not i+1 bcz we just deleted number!
                     del l[i]
@@ -171,8 +186,11 @@ def calculate2(l : list):
         if (l[i] in operators and l[i] in regularOperator):
             while True:
                 if (l[i] == '/'):
-                    l[i] =  l[i-1] / l[i+1]
-                    del l[i-1]
+                    try :
+                        l[i] =  l[i-1] / l[i+1]
+                        del l[i-1]
+                    except ZeroDivisionError:
+                        raise zeroDevission
                     #not i+1 bcz we just deleted number!
                     del l[i]
                     break
@@ -213,6 +231,9 @@ def calculate1(l : list):
         else:
             i = i + 1
         t = len(l) - 1
+    if len(l) == 2:
+        l[1] = -l[1]
+        del l[0]
     return l
 
 def calculateWithparenthesis(l : list):

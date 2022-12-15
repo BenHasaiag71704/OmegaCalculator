@@ -11,6 +11,8 @@ def isNum(num : str):
         return False
 
 
+
+
 #only valid chars
 def onlyAllowdCharsValidation(l: list):
     for i in l:
@@ -129,13 +131,14 @@ def noMinusBeforeRegularOperator(l : list):
 
 #check that after leftOperators can come only num , - or (     also check there is something after it
 def leftOperatorsValidatorFromRight(l : list):
+
     for i in range(len(l) - 1):
         if (l[i] in leftOperators):
             if (l[i+1] == '-'):
                 if (i+2 >= len(l)):
                     print("if after tilda comes a - , the next input must be a number")
                     return False
-                elif not isNum(l[i + 2]):
+                elif not isNum(l[i + 2]) and not l[i + 2]=='(':
                     print("if after tilda comes a - , the next input must be a number")
                     return False
             if (l[i+1] in regularOperatorNoMinus):
@@ -215,3 +218,14 @@ def doesntStartWithRegular(l:list):
         return False
 
     return True
+
+
+
+
+def OnlyWhiteSpaces(l : list):
+    if len(l) == 0:
+        return True
+    temp = listToString(l)
+    if (temp.isspace()):
+        return True
+    return False
