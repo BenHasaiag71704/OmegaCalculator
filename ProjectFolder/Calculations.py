@@ -112,18 +112,21 @@ def calculate5(l : list):
         if (l[i] in operators and l[i] in regularOperator):
             while True:
                 if (l[i] == '$'):
+                    l = fixExtraMinus(l,i)
                     l[i] = getMax(l[i-1] , l[i+1])
                     del l[i-1]
                     #not i+1 bcz we just deleted number!
                     del l[i]
                     break
                 if (l[i] == '&'):
+                    l = fixExtraMinus(l,i)
                     l[i] = getMin(l[i-1] , l[i+1])
                     del l[i-1]
                     #not i+1 bcz we just deleted number!
                     del l[i]
                     break
                 if (l[i] == '@'):
+                    l = fixExtraMinus(l,i)
                     l[i] = (l[i-1] + l[i+1])/2
                     del l[i-1]
                     #not i+1 bcz we just deleted number!
@@ -143,6 +146,7 @@ def calculate4(l : list):
             while True:
                 try :
                     if (l[i] == '%'):
+                        l = fixExtraMinus(l, i)
                         l[i] = l[i-1] % l[i+1]
                         del l[i-1]
                     #not i+1 bcz we just deleted number!
@@ -163,6 +167,7 @@ def calculate3(l : list):
         if (l[i] in operators and l[i] in regularOperator):
             while True:
                 if (l[i] == '^'):
+                    l = fixExtraMinus(l,i)
                     try :
                         l[i] =  math.pow(l[i-1] , l[i+1])
                     except ValueError:
@@ -186,6 +191,7 @@ def calculate2(l : list):
         if (l[i] in operators and l[i] in regularOperator):
             while True:
                 if (l[i] == '/'):
+                    l = fixExtraMinus(l,i)
                     try :
                         l[i] =  l[i-1] / l[i+1]
                         del l[i-1]
@@ -195,6 +201,7 @@ def calculate2(l : list):
                     del l[i]
                     break
                 if (l[i] == '*'):
+                    l = fixExtraMinus(l,i)
                     l[i] =  l[i-1] * l[i+1]
                     del l[i-1]
                     #not i+1 bcz we just deleted number!
@@ -209,6 +216,7 @@ def calculate1(l : list):
     operators = getOperatorList(1)
     i = 1
     t = len(l) - 1
+    n = len(l)
     if (len(l) >=2):
         if l[0] == '-':
             del l[0]
@@ -217,6 +225,7 @@ def calculate1(l : list):
         if (l[i] in operators and l[i] in regularOperator):
             while True:
                 if (l[i] == '+'):
+                    l = fixExtraMinus(l,i)
                     l[i] =  l[i-1] + l[i+1]
                     del l[i-1]
                     #not i+1 bcz we just deleted number!
@@ -264,4 +273,10 @@ def calculateWithparenthesis(l : list):
     return l
 
 
-
+def fixExtraMinus(l:list , i:int):
+    n = len(l)
+    if (i < n-2):
+        if (l[i] in regularOperator and l[i+1] == '-'):
+            del l[i+1]
+            l[i+1] = -l[i+1]
+    return l
