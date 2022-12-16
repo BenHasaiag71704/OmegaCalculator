@@ -53,7 +53,7 @@ class Equation(object):
 
             #would be here when -_3 valid
             #Equationlist = NoSpaces(Equationlist)
-            print(Equationlist)
+            #print(Equationlist)
 
             flag3 = ParenthesisValidation(Equationlist)
             flag4 = allOperatorValidation(Equationlist)
