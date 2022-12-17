@@ -13,15 +13,21 @@ class Equation(object):
     def __init__(self, MyInput):
         Equationlist = list(MyInput)
         print("original Equation :" , Equationlist)
+
+        #check if the equation have items in it
+
         if (OnlyWhiteSpaces(Equationlist)):
             Equationlist = []
             self.answer = None
         else:
             Equationlist.insert(0, '(')
             Equationlist.append(')')
+
+            #save first valid in flag
             flag = AllowedAndNoDigSpaceValid(Equationlist)
             Equationlist = NoSpaces(Equationlist)
 
+            #change the equation so it is easier to valid
             Equationlist = noDoubleSpaces(Equationlist)
             Equationlist = convertTofloats(Equationlist)
             Equationlist = fixDecimalPoint(Equationlist)
@@ -34,7 +40,7 @@ class Equation(object):
             Equationlist = removeMultipuleMinus(Equationlist)
             #print("list without Multipule Minus" ,Equationlist)
 
-
+            # push the minuses as needed
             Equationlist = minusIntoTheNumber(Equationlist)
             #print(Equationlist)
 
@@ -55,6 +61,7 @@ class Equation(object):
             #Equationlist = NoSpaces(Equationlist)
             #print(Equationlist)
 
+            # does () valid and operator valid
             flag3 = ParenthesisValidation(Equationlist)
             flag4 = allOperatorValidation(Equationlist)
 
@@ -63,12 +70,17 @@ class Equation(object):
 
             #print(Equationlist)
 
+            #on last valid for edge-case
             flag6 = doesntStartWithRegular(Equationlist)
             #and flag2 for -_2 valid
+
+            #if all valid pass , time to calc
             if (flag  and flag3 and flag4 and flag6):
                 Equationlist = strToFloat(Equationlist)
                 #print(Equationlist)
                 self.Equationlist = Equationlist
+
+                #try calc , else , print the right message
                 try:
                     self.answer = calculateWithparenthesis(Equationlist)
                 except NegetiveFactorialException:

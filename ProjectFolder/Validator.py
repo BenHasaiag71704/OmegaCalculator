@@ -98,6 +98,7 @@ def noEmptyParenthesis(l : list):
             return False
     return True
 
+# check there is only one . in a row , 2..1 is unvalid
 def noDoubleDot(l : list):
     for i in range(len(l) - 1):
         if (l[i] == '.' and l[i+1] == '.'):
@@ -184,31 +185,9 @@ def RightOperatorsValidatorFromLeft(l : list):
 def allOperatorValidation(l : list):
     return regularOperatorValidator(l) and noMinusBeforeRegularOperator(l) and leftOperatorsValidatorFromRight(l) and leftOperatorsValidatorFromLeft(l) and RightOperatorsValidatorFromRight(l) and RightOperatorsValidatorFromLeft(l)
 
-def noNegetivehastagclal(l : list):
-    ans = 0
-    copyList = copyLList(l)
-    tempList = []
-    count = 1
-    i = 1
-    t = len(copyList)
-    while i < t:
-        pass
 
 
-def noNegetivrFactorialAtTheBegine(l:list):
-    temp = NoSpaces(l)
-    i = 0
-    flag = False
-    while (temp[i] == '-' and i < len(temp)):
-        i=i+1
-        flag = True
-    if (flag):
-        if (i+1 < len(temp)):
-            if (isNum(temp[i]) and temp[i+1] == '!' ):
-                print("cant factorial a number")
-                return False
-    return True
-
+#check that an equation dont start with unwanted operator , like *3+5
 def doesntStartWithRegular(l:list):
     i = 0
     while (l[i] == '('):
@@ -221,7 +200,7 @@ def doesntStartWithRegular(l:list):
 
 
 
-
+#check if there are only white spaces in the list
 def OnlyWhiteSpaces(l : list):
     if len(l) == 0:
         return True

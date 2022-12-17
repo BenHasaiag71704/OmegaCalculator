@@ -3,13 +3,14 @@ from Fixer import *
 from Consts import *
 from allExceptions import *
 
-
+#copy list
 def copyLList(l : list):
     temp = []
     for i in range(len(l)):
         temp.append(l[i])
     return temp
 
+# get the list of Fth priority
 def getOperatorList(f : int):
     temp = []
     for k, v in OperatorDict.items():
@@ -17,6 +18,7 @@ def getOperatorList(f : int):
             temp.append(k)
     return temp
 
+# remove the decimal point from a number
 def removeDecimal(f: float) -> int:
     s = str(f)
     s = s.replace('.', '')
@@ -26,6 +28,8 @@ def removeDecimal(f: float) -> int:
         raise numberToBigToSum
     return int(s)
 
+
+# do the factorial calculation
 def factorial(f : float):
     if (f == 0):
         return 1
@@ -42,6 +46,8 @@ def factorial(f : float):
         raise floatFactorial
     return sum
 
+
+#summing the digits of a number
 def sumOfDig(f : float):
     temp = removeDecimal(f)
     sum = 0
@@ -56,16 +62,22 @@ def sumOfDig(f : float):
         return -sum
     return sum
 
+# getting the bigger number
 def getMax(f1 : float , f2 : float):
     if (f1 > f2):
         return f1
     return f2
 
+
+# getting the smaller number
 def getMin(f1 : float , f2 : float):
     if (f1 > f2):
         return f2
     return f1
 
+
+# calling all the calc funcs
+# we know that the only number left will be the answer
 
 def calculation(l : list):
     l = calculate6(l)
@@ -75,6 +87,17 @@ def calculation(l : list):
     l = calculate2(l)
     l = calculate1(l)
     return l[0]
+
+
+
+#all the calc are the same ,  we check if the operator has Nth priority ,  then work out each one acording to what he does
+# for example       1 + 3 * 5 ^ 5 $ 3!
+# after calc 6      1 + 3 * 5 ^ 5 $ 6
+# after cal 5       1 + 3 * 5 ^ 6
+# after calc 4      1 + 3 * 5 ^ 6
+# after calc 3      1 + 3 * 15625
+# after calc 2      1 + 46875
+# after calc 1      46876
 
 def calculate6(l : list):
     i = 0
@@ -103,6 +126,8 @@ def calculate6(l : list):
             i = i + 1
         t = len(l)
     return l
+
+
 
 def calculate5(l : list):
     operators = getOperatorList(5)
@@ -249,6 +274,14 @@ def calculate1(l : list):
         del l[0]
     return l
 
+
+#calculation.
+#going until first )
+#pushing everything inside to temp list until (
+# reversing the list (to keep the order)
+# calculating the value of the equation
+# replace the ( with the value
+# repeat untill everything is calculated (when there is no more () , must be only 1 number in the list , the answer)
 def calculateWithparenthesis(l : list):
     tempList = []
     i = 0
@@ -272,7 +305,7 @@ def calculateWithparenthesis(l : list):
     l = calculation(l)
     return l
 
-
+#fix the case where there is extra minus , for example 1+-~-1 -> 1,+,-,1, , 1,+,-1
 def fixExtraMinus(l:list , i:int):
     n = len(l)
     if (i < n-2):

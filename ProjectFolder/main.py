@@ -6,7 +6,6 @@ from Consts import *
 
 
 
-
 print("welcome to my omega calculator , please insert your answers")
 flag = True
 while flag:

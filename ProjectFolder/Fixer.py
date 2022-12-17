@@ -1,5 +1,7 @@
 from Consts import *
 
+
+#check if str is a number
 def isNum(num : str):
     try:
         float(num)
@@ -7,6 +9,7 @@ def isNum(num : str):
     except ValueError:
         return False
 
+#convert list into string
 def listToString(l : list):
     str1 = ""
     return (str1.join(l))
@@ -147,7 +150,7 @@ def firstMinusesIntoNumber(l:list):
     return l
 
 
-
+#convert all numbers in the list from str to floar , means ['1','+','1'] will be [1,'+',1]
 def strToFloat(l : list):
     temp = []
     for i in range(len(l)):
@@ -158,23 +161,4 @@ def strToFloat(l : list):
     return temp
 
 
-def minusIntoTheNumberOLD(l : list):
-    copy =  NoSpaces(l)
-    t = len(copy)
-    i = 0
-    while i<t:
-        if i > t-3:
-            break
-        elif (copy[i] in norightOperators and copy[i+1] == "-" and isNum(copy[i+2])):
-            copy[i + 2] = "-" + copy[i+2]
-            del copy[i+1]
-            t = len(copy)
-        else:
-            i+=1
-    if (copy[0] == '-' and isNum(copy[1])):
-        copy[1] = '-' + copy[1]
-        del copy[0]
-        if (copy[0][0] == '-' and copy[0][1] == '-'):
-            copy[0] = copy[0][2]
-    return copy
 
